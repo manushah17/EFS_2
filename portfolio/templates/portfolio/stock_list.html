@@ -1,0 +1,77 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Eagle Financial</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    </head>
+    <body>
+    <style>
+        body {
+            background-color: beige;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    {% if user.is_authenticated %}
+                    	<div class="panel-heading">Welcome {{ user.username }} !</div>
+                	{% else %}
+                		<div class="panel-heading">Welcome!</div>
+                	{% endif %}
+                    <div class="panel-body">
+                        Eagle Financial Services, your Midwest Financial Services Partner.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 style="padding-left: 15Px">Stock Information</h2>
+    </div>
+     <div class="row">
+                  <table class="table-md table-striped table-bordered table-hover table-condensed table-responsive">
+                    <thead>
+                    <tr class="bg-info">
+
+                        <th colspan="9" class="col text-right"><a href="{% url 'portfolio:stock_new' %}" >
+                                <span class="btn btn-primary">Add New Stock</span></a></th>
+                    </tr>
+            <tr class="bg-info">
+                <th nowrap="true">Customer Name</th>
+                <th nowrap="true">Symbol</th>
+                <th nowrap="true">Name</th>
+                <th nowrap="true">Shares</th>
+                <th nowrap="true">Purchase Price</th>
+                <th nowrap="true">Purchase Date</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td nowrap="true">{{ stock.customer.name }}</td>
+                    <td nowrap="true">{{ stock.symbol }}</td>
+                    <td nowrap="true">{{ stock.name }}</td>
+                    <td nowrap="true">{{ stock.shares }}</td>
+                    <td nowrap="true">{{ stock.purchase_price }}</td>
+                    <td nowrap="true">{{ stock.purchase_date }}</td>
+                     <td ><a href="{% url 'portfolio:stock_edit' pk=stock.pk %}"
+                           class="btn btn-warning">Edit</a></td>
+                    <td><a href="{% url 'portfolio:stock_delete' pk=stock.pk %}"
+                           onclick="return confirm('Are you sure you want to delete?')"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Eagle Financial Services</title>
+	{% load static %}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+   <script type="text/javascript" src="{% static "fusioncharts/fusioncharts.js" %}"></script>
+   <script type="text/javascript" src="{% static "fusioncharts/themes/fusioncharts.theme.fint.js" %}"></script>
+    <head>
+
+</head>
+<body>
+<div class="container">
+<div class="row">
+    <h2 style="padding-left: 15Px">Customer Portfolio</h2>
+</div>
+    <div class="row">
+ 	<table class="table-md table-striped table-bordered table-hover table-condensed table-responsive">
+            <thead>
+            <tr class="bg-info">
+                <th>Customer Number</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Primary Email</th>
+                <th>Cell Phone</th>
+
+            </tr>
+            </thead>
+             <tbody>
+                <tr>
+                    <td nowrap>{{ customers.cust_number }}</td>
+                    <td nowrap>{{ customers.name }}</td>
+                    <td nowrap>{{ customers.address }}</td>
+                    <td>{{ customers.city }}</td>
+                    <td>{{ customers.state }}</td>
+                    <td>{{ customers.zipcode }}</td>
+                    <td nowrap>{{ customers.email }}</td>
+                    <td nowrap>{{ customers.cell_phone }}</td>
+
+                 </tr>
+            </tbody>
+        </table>
+</div>
+<br/>
+    <div class="row">
+        <table>
+            <tr>
+                <td><div  id="chart-1">{{ output|safe }}</div></td>
+                 <td><div class="col-md-2" ></div></td>
+                 <td><div  id="chart-2">{{ output2|safe }}</div></td>
+
+            </tr>
+        </table>
+
+    </div>
+    <br/>
+    <div class="row">
+        <table>
+            <tr>
+                <td><div  id="chart-3">{{ output3|safe }}</div></td>
+                 <td><div class="col-md-2" ></div></td>
+                 <td></td>
+
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

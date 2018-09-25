@@ -1,0 +1,15 @@
+{% extends 'portfolio/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>Add a New Investment</h1>
+    <form method="POST" class="investment-form">{% csrf_token %}
+          {{ form|crispy }}
+
+    <table>
+        <tr>
+         	<td><button type="submit" class="save btn btn-default">Save</button></td>
+         	<td><a href="{% url 'portfolio:investment_list' %}" class="btn btn-default">Cancel</a></td>
+        </tr>
+      </table>
+    </form>
+{% endblock %}

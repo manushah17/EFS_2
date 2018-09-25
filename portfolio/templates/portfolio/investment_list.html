@@ -1,0 +1,82 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Eagle Financial</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    </head>
+    <body>
+    <style>
+        body {
+            background-color: beige;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    {% if user.is_authenticated %}
+                    	<div class="panel-heading">Welcome {{ user.username }} !</div>
+                	{% else %}
+                		<div class="panel-heading">Welcome!</div>
+                	{% endif %}
+                    <div class="panel-body">
+                        Eagle Financial Services, your Midwest Financial Services Partner.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 style="padding-left: 15Px">Investment Information</h2>
+    </div>
+     <div class="row">
+                  <table class="table-md table-striped table-bordered table-hover table-condensed table-responsive">
+                    <thead>
+                    <tr class="bg-info">
+
+                        <th colspan="10" class="col text-right"><a href="{% url 'portfolio:investment_new' %}" >
+                                <span class="btn btn-primary">Add New Investment</span></a></th>
+                    </tr>
+            <tr class="bg-info">
+                <th nowrap="true">Customer Name</th>
+                <th nowrap="true">Category</th>
+                <th nowrap="true">Description</th>
+                <th nowrap="true">Acquired Value</th>
+                <th nowrap="true">Acquired Date</th>
+                <th nowrap="true">Recent Value</th>
+                <th nowrap="true">Recent Date</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for investment in investments %}
+                <tr>
+                    <td nowrap="true">{{ investment.customer.name}}</td>
+                    <td nowrap="true">{{ investment.category }}</td>
+                    <td nowrap="true">{{ investment.description }}</td>
+                    <td nowrap="true">{{ investment.acquired_value }}</td>
+                    <td nowrap="true">{{ investment.acquired_date }}</td>
+                    <td nowrap="true">{{ investment.recent_value }}</td>
+                    <td nowrap="true">{{ investment.recent_date }}</td>
+                    <td><a href="{% url 'portfolio:investment_edit' pk=investment.pk %}" class="btn btn-warning">Edit</a></td>
+                     <td><a href="{% url 'portfolio:investment_delete' pk=investment.pk %}"
+                           onclick="return confirm('Are you sure you want to delete?')"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+  </body>
+    </html>
+{% endblock %}
+
+
+

@@ -1,0 +1,90 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Eagle Financial</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    </head>
+    <body>
+    <style>
+        body {
+            background-color: beige;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    {% if user.is_authenticated %}
+                    	<div class="panel-heading">Welcome {{ user.username }} !</div>
+                	{% else %}
+                		<div class="panel-heading">Welcome!</div>
+                	{% endif %}
+                    <div class="panel-body">
+                        Eagle Financial Services, your Midwest Financial Services Partner.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 style="padding-left: 15Px">Customer Information</h2>
+    </div>
+
+     <div class="row">
+                  <table class="table-md table-striped table-bordered table-hover table-condensed table-responsive">
+                    <thead>
+                    <tr class="bg-info">
+
+                        <th colspan="12" class="col text-right"><a href="{% url 'portfolio:customer_new' %}" >
+                                <span class="btn btn-primary">Add New Customer</span></a></th>
+                    </tr>
+            <tr class="bg-info">
+                <th>Customer Number</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Primary Email</th>
+                <th>Cell Phone</th>
+                <th colspan="4">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td nowrap="true">{{ customer.cust_number }}</td>
+                    <td nowrap="true">{{ customer.name }}</td>
+                    <td nowrap="true">{{ customer.address }}</td>
+                    <td nowrap="true">{{ customer.city }}</td>
+                    <td nowrap="true">{{ customer.state }}</td>
+                    <td nowrap="true">{{ customer.zipcode }}</td>
+                    <td nowrap="true">{{ customer.email }}</td>
+                    <td nowrap="true">{{ customer.cell_phone }}</td>
+                    <td><a href="{% url 'portfolio:customer_edit' pk=customer.pk %}" class="btn btn-warning">Edit</a></td>
+                     <td><a href="{% url 'portfolio:customer_delete' pk=customer.pk %}"
+                           onclick="return confirm('Are you sure you want to delete?')"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+
+                    <td><a href="{% url 'portfolio:portfolio' pk=customer.pk %}"
+                           class="btn btn-primary">Portfolio</a></td>
+                 <td><a class="btn btn-primary" href="{% url 'portfolio:demo' pk=customer.pk %}" role="button">
+                     View Graph</a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+  </body>
+    </html>
+{% endblock %}
+
+
+

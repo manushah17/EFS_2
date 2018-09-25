@@ -1,0 +1,177 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Summary</title>
+    <!-- Dependencies -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Invoice -->
+
+    <title>Eagle Financial Services</title>
+</head>
+<body>
+
+<div class="">
+<div class="">
+    <h2 style="padding-left: 15Px">Customer Portfolio</h2>
+</div>
+<div class="">
+ 	<table class="">
+            <thead>
+            <tr class="">
+                <th>Customer Number</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Primary Email</th>
+                <th>Cell Phone</th>
+
+            </tr>
+            </thead>
+             <tbody>
+                <tr>
+                    <td nowrap>{{ customers.cust_number }}</td>
+                    <td nowrap>{{ customers.name }}</td>
+                    <td nowrap>{{ customers.address }}</td>
+                    <td>{{ customers.city }}</td>
+                    <td>{{ customers.state }}</td>
+                    <td>{{ customers.zipcode }}</td>
+                    <td nowrap>{{ customers.email }}</td>
+                    <td nowrap>{{ customers.cell_phone }}</td>
+
+                 </tr>
+            </tbody>
+        </table>
+</div>
+<br/>
+<div class="">
+        <table class="">
+            <thead>
+            <tr class="">
+                <th>Portfolio Initial Investments</th>
+                <th>Portfolio Current Investments</th>
+                <th>Grand Total Results</th>
+            </tr>
+            </thead>
+             <tbody>
+                <tr>
+                    <td nowrap>{{ portfolio_initial_invest }}</td>
+                    <td nowrap>{{ portfolio_current_invest }}</td>
+                    <td nowrap>{{ portfolio_result }}</td>
+                </tr>
+             </tbody>
+        </table>
+    </div>
+<br/>
+<div class="">
+    <h3 style="padding-left: 15Px">Stocks Information</h3>
+</div>
+<div class="">
+ 	<table class="">
+            <thead>
+            <tr class="">
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Initial Stock Price</th>
+                <th>Initial Stock Value</th>
+                <th>Current Stock Price</th>
+                <th>Current Stock Value</th>
+                <th>Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td nowrap>{{ stock.name }}</td>
+                    <td>{{ stock.shares }}</td>
+                    <td nowrap>{{ stock.purchase_price }}</td>
+                    <td nowrap>{{ stock.initial_stock_value }}</td>
+                    <td nowrap></td>
+                    <td nowrap></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+<br/>
+    <div class="">
+        <table class="">
+            <thead>
+            <tr class="">
+                <th>Total of Initial Stocks</th>
+                <th>Total of Current Stocks</th>
+                <th>Results</th>
+            </tr>
+            </thead>
+             <tbody>
+                <tr>
+                    <td nowrap>{{ sum_of_initial_stock_value }}</td>
+                    <td nowrap>{{ sum_current_stocks_value }}</td>
+                    <td nowrap>{{ total_stock_result }}</td>
+                </tr>
+             </tbody>
+        </table>
+    </div>
+    <div class="">
+       <h3 style="padding-left: 15Px">Investment Information</h3>
+    </div>
+    <div class="">
+        <table class="">
+            <thead>
+            <tr class="">
+                <th>Category</th>
+                <th>Description</th>
+                <th>Acquired Value</th>
+                <th>Acquired Date</th>
+                <th>Recent Value</th>
+                <th>Recent Date</th>
+                <th>Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for investment in investments %}
+                <tr>
+                    <td>{{ investment.category }}</td>
+                    <td nowrap>{{ investment.description }}</td>
+                    <td nowrap>{{ investment.acquired_value }}</td>
+                    <td nowrap>{{ investment.acquired_date }}</td>
+                    <td>{{ investment.recent_value }}</td>
+                    <td nowrap>{{ investment.recent_date }}</td>
+                    <td nowrap>{{ investment.results_by_investment }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<br/>
+    <div class="">
+    <table class="">
+            <thead>
+            <tr class="">
+                <th>Total Initial Investment</th>
+                <th>Total Current Investment</th>
+                <th>Total Results</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>{{ sum_acquired_value}}</td>
+                    <td nowrap>{{ sum_recent_value }}</td>
+                    <td nowrap>{{ total_invest_result }}</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    </body>
+</html>
